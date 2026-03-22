@@ -7,6 +7,7 @@ import { ZenLoader } from './components/ZenLoader';
 import { HiddenGems } from './components/HiddenGems';
 import { MythsVsFacts } from './components/MythsVsFacts';
 import { GlobalRadar } from './components/GlobalRadar';
+import { AuthorProfile } from './components/AuthorProfile';
 import { mainMetrics as initialMetrics, historicalLifeExpectancy, schoolDropoutRate } from './data/mockData';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
@@ -137,10 +138,13 @@ function App() {
         <section>
           <SpainMap />
         </section>
+
+        <AuthorProfile />
       </main>
 
       <footer className="mt-12 py-8 text-center text-earth-800/40 text-sm border-t border-brand-50">
-        <p>Construido con ❤️ combinando datos del Banco Mundial e INE.</p>
+        <p>Construido con ❤️ combinando datos del Banco Mundial, OCDE e INE.</p>
+        <p className="mt-2 text-[11px] font-bold tracking-widest uppercase">© 2026 Borja Félix Rojas. Todos los derechos reservados.</p>
       </footer>
     </div>
   );
