@@ -4,46 +4,49 @@ import { motion } from 'framer-motion';
 export function AuthorProfile() {
   return (
     <motion.section 
-      initial={{ opacity: 0, scale: 0.98, y: 20 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="mt-12 mb-8 relative"
+      transition={{ duration: 1.5 }}
+      className="mt-20 mb-4 max-w-2xl mx-auto"
     >
-      <div className="glass-card p-8 md:p-10 flex flex-col md:flex-row items-center md:items-start justify-between gap-8 relative z-10 border-brand-100/30">
-        <div className="flex-1 space-y-4 text-center md:text-left">
-          <div className="flex flex-col md:flex-row items-center gap-5">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-brand-600 to-brand-400 flex items-center justify-center text-white font-black text-2xl shadow-[0_4px_20px_rgba(120,155,136,0.3)] shrink-0">
-              BR
-            </div>
-            <div>
-              <h4 className="font-bold text-brand-900 text-xl md:text-2xl tracking-tight">Borja Félix Rojas</h4>
-              <p className="text-brand-600/80 text-xs sm:text-sm font-bold tracking-[0.15em] uppercase mt-1.5">
-                Data Analytics & Control de Gestión
-              </p>
-            </div>
-          </div>
-          <p className="text-earth-800/80 text-[15px] sm:text-[16px] max-w-3xl leading-relaxed italic border-l-2 border-brand-400/50 pl-4 py-1 mx-auto md:mx-0 text-left">
-            "No soy solo un analista que mira números desde fuera; soy un Ingeniero de Gestión habituado a bajar al terreno. Mi perfil combina la visión estratégica para planificar con el carácter operativo para asegurar que esa planificación se cumpla día a día."
-          </p>
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 pt-3">
-            {['Python', 'Power BI', 'Excel Avanzado (VBA)', 'Ingeniero Civil Industrial'].map(skill => (
-              <span key={skill} className="px-3 py-1.5 bg-brand-50 text-brand-600 text-[11px] sm:text-xs rounded-full font-bold uppercase tracking-wider border border-brand-100/50">
-                {skill}
-              </span>
-            ))}
+      <div className="flex flex-col items-center text-center gap-6">
+        <div className="relative group">
+          <div className="absolute inset-0 bg-brand-500 rounded-full blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+          <img 
+            src="/logo.jpeg" 
+            alt="BFR Logo" 
+            className="relative w-16 h-16 rounded-full shadow-[0_4px_20px_rgba(120,155,136,0.15)] object-cover border border-brand-100/50" 
+            onError={(e) => {
+              (e.target as HTMLImageElement).style.display = 'none';
+              (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
+            }}
+          />
+          <div className="hidden absolute inset-0 bg-brand-50 rounded-full items-center justify-center text-brand-600 font-bold text-xl border border-brand-100">
+            BFR
           </div>
         </div>
         
-        <div className="flex flex-row md:flex-col gap-3 shrink-0 mt-4 md:mt-0">
-          <a href="https://www.linkedin.com/in/borjafelixrojas/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-2xl bg-surface hover:bg-brand-50 text-brand-600 transition-all duration-300 border border-brand-100 hover:shadow-md hover:-translate-y-1" title="LinkedIn">
-            <Linkedin className="w-5 h-5" />
+        <div className="space-y-1.5">
+          <h4 className="font-bold text-brand-900 text-[17px] tracking-tight">Borja Félix Rojas</h4>
+          <p className="text-brand-600/70 text-[11px] font-bold tracking-[0.25em] uppercase">
+            Ingeniero de Gestión & Data Analytics
+          </p>
+        </div>
+
+        <p className="text-earth-800/60 text-[14.5px] leading-relaxed italic font-medium">
+          "Traduciendo sistemas complejos y datos puros en resiliencia y humanidad. Porque toda optimización sirve a un único fin: construir un entorno organizativo que inspire un futuro mejor."
+        </p>
+
+        <div className="flex gap-5 pt-3">
+          <a href="https://www.linkedin.com/in/borjafelixrojas/" target="_blank" rel="noopener noreferrer" className="text-earth-800/30 hover:text-brand-500 hover:-translate-y-0.5 transition-all duration-300" title="LinkedIn">
+            <Linkedin className="w-[18px] h-[18px]" />
           </a>
-          <a href="https://borjafelixrojas.odoo.com/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-2xl bg-surface hover:bg-brand-50 text-brand-600 transition-all duration-300 border border-brand-100 hover:shadow-md hover:-translate-y-1" title="Web Personal">
-            <Globe className="w-5 h-5" />
+          <a href="https://borjafelixrojas.odoo.com/" target="_blank" rel="noopener noreferrer" className="text-earth-800/30 hover:text-brand-500 hover:-translate-y-0.5 transition-all duration-300" title="Web Personal">
+            <Globe className="w-[18px] h-[18px]" />
           </a>
-          <a href="https://github.com/DonBorgiFR" target="_blank" rel="noopener noreferrer" className="p-3 rounded-2xl bg-surface hover:bg-brand-50 text-brand-600 transition-all duration-300 border border-brand-100 hover:shadow-md hover:-translate-y-1" title="GitHub">
-            <Github className="w-5 h-5" />
+          <a href="https://github.com/DonBorgiFR" target="_blank" rel="noopener noreferrer" className="text-earth-800/30 hover:text-brand-500 hover:-translate-y-0.5 transition-all duration-300" title="GitHub">
+            <Github className="w-[18px] h-[18px]" />
           </a>
         </div>
       </div>
