@@ -1,24 +1,63 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-50: #f0f9ff;
-  --color-brand-100: #e0f2fe;
-  --color-brand-500: #0ea5e9;
-  --color-brand-600: #0284c7;
-  --color-brand-900: #0c4a6e;
-  --color-accent-500: #f97316;
-  --color-earth-800: #431407;
+  --color-brand-50: var(--b50);
+  --color-brand-100: var(--b100);
+  --color-brand-400: var(--b400);
+  --color-brand-500: var(--b500);
+  --color-brand-600: var(--b600);
+  --color-brand-900: var(--b900);
+  --color-accent-400: var(--a400);
+  --color-accent-500: var(--a500);
+  --color-earth-800: var(--e800);
+  --color-surface: var(--surface);
+  --color-surface-card: var(--surface-card);
+}
+
+:root {
+  --b50: #f3f6f4;
+  --b100: #e1e9e3;
+  --b400: #a0bcae;
+  --b500: #789b88;
+  --b600: #5b7b69;
+  --b900: #2c3f35;
+  --a400: #e3d2aa;
+  --a500: #c9b183;
+  --e800: #3d3831;
+  --surface: #fbfbf9;
+  --surface-card: rgba(255, 255, 255, 0.7);
+}
+
+.dark {
+  --b50: #1a221d;
+  --b100: #25312a;
+  --b400: #4f6e5c;
+  --b500: #5b7b69;
+  --b600: #8ba996;
+  --b900: #d5e5db;
+  --a400: #8c7849;
+  --a500: #b89b5e;
+  --e800: #dad6cf;
+  --surface: #101512;
+  --surface-card: rgba(26, 34, 29, 0.7);
 }
 
 body {
-  @apply bg-slate-50 text-slate-800 font-sans antialiased min-h-screen selection:bg-brand-500 selection:text-white;
+  background-color: var(--surface);
+  color: var(--e800);
+  @apply font-sans antialiased min-h-screen selection:bg-brand-500 selection:text-white transition-colors duration-1000;
 }
 
 /* Glassmorphism utilities */
 .glass-header {
-  @apply bg-white/70 backdrop-blur-md border-b border-white/20 shadow-sm sticky top-0 z-50;
+  background-color: color-mix(in srgb, var(--surface) 80%, transparent);
+  @apply backdrop-blur-xl border-b border-brand-100/50 shadow-[0_4px_30px_rgba(0,0,0,0.02)] sticky top-0 z-50 transition-all duration-500;
 }
 
 .glass-card {
-  @apply bg-white/60 backdrop-blur-xl border border-white/40 shadow-sm rounded-2xl overflow-hidden hover:shadow-md transition-shadow duration-300;
+  background-color: var(--surface-card);
+  backdrop-filter: blur(24px);
+  @apply border border-brand-50 shadow-[0_8px_32px_rgba(120,155,136,0.05)] rounded-[2rem] overflow-hidden hover:shadow-[0_12px_40px_rgba(120,155,136,0.1)] hover:-translate-y-1 transition-all duration-500 ease-out;
 }
+
+.perspective-1000 { perspective: 1000px; } .preserve-3d { transform-style: preserve-3d; } .backface-hidden { backface-visibility: hidden; } .rotate-y-180 { transform: rotateY(180deg); } .ease-out-expo { transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1); }

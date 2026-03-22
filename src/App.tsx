@@ -1,8 +1,12 @@
-import { Activity } from 'lucide-react';
+import { Activity, Sparkles, Moon, Sun } from 'lucide-react';
 import { Hero } from './components/Hero';
 import { StatCard } from './components/StatCard';
 import { TrendChart } from './components/TrendChart';
 import { SpainMap } from './components/SpainMap';
+import { ZenLoader } from './components/ZenLoader';
+import { HiddenGems } from './components/HiddenGems';
+import { MythsVsFacts } from './components/MythsVsFacts';
+import { GlobalRadar } from './components/GlobalRadar';
 import { mainMetrics as initialMetrics, historicalLifeExpectancy, schoolDropoutRate } from './data/mockData';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
@@ -11,6 +15,15 @@ import { fetchLiveMetrics } from './services/api';
 function App() {
   const [metrics, setMetrics] = useState(initialMetrics);
   const [isLoading, setIsLoading] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
 
   useEffect(() => {
     async function loadData() {
@@ -24,58 +37,60 @@ function App() {
 
   return (
     <div className="flex flex-col">
-      <header className="glass-header px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-2 text-brand-900">
-          <Activity className="h-6 w-6 text-brand-500" />
+      <header className="glass-header px-8 py-5 flex items-center justify-between">
+        <div className="flex items-center gap-3 text-brand-900">
+          <div className="bg-brand-50 p-2.5 rounded-2xl shadow-sm border border-brand-100">
+            <Activity className="h-5 w-5 text-brand-600" />
+          </div>
           <h1 className="text-xl font-bold tracking-tight">España Viva</h1>
         </div>
-        <div className="text-sm font-medium text-slate-500 hidden sm:block">
-          El Pulso del Progreso Humano
+        <div className="flex items-center gap-6">
+          <div className="text-xs font-bold tracking-[0.2em] text-brand-600/50 uppercase hidden sm:block">
+            El Pulso del Progreso Humano
+          </div>
+          <button 
+            onClick={() => setIsDarkMode(!isDarkMode)}
+            className="p-2.5 rounded-2xl bg-brand-50 hover:bg-brand-100 text-brand-600 transition-colors border border-brand-100"
+            title="Modo Noche Zen"
+          >
+            {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          </button>
         </div>
       </header>
       
-      <main className="flex-1 p-4 md:p-8 max-w-7xl mx-auto w-full space-y-12">
-        <section className="text-center space-y-4 py-8">
+      <main className="flex-1 p-6 md:p-10 lg:p-12 max-w-[85rem] mx-auto w-full space-y-24">
+        <section className="text-center space-y-6 pt-12 pb-8">
           <motion.h2 
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight"
+            transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1] }}
+            className="text-5xl md:text-7xl font-black text-brand-900 tracking-tighter"
           >
-            Data and <span className="text-brand-500">Happiness</span>
+            Bienestar <span className="font-light text-brand-600/80 italic">&</span> Datos
           </motion.h2>
           <motion.p 
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed"
+            transition={{ delay: 0.2, duration: 1, ease: [0.25, 1, 0.5, 1] }}
+            className="text-lg md:text-xl text-earth-800/70 max-w-3xl mx-auto leading-relaxed text-balance"
           >
-            Explora las métricas de bienestar social, salud y progreso que demuestran que, día a día, logramos cosas únicas y extraordinarias.
+            Explora las métricas de progreso social que demuestran que, día a día, logramos hitos de empatía, salud y sostenibilidad verdaderamente extraordinarios.
           </motion.p>
         </section>
 
         <Hero />
 
-        <section>
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-2xl font-bold text-slate-900">Indicadores de Bienestar</h3>
-            <span className="text-sm text-slate-500 font-medium">Actualizado 2025</span>
+        <section id="hitos" className="scroll-mt-32">
+          <div className="flex items-center justify-between mb-8 px-2">
+            <div className="flex items-center gap-3">
+              <Sparkles className="h-6 w-6 text-brand-400" />
+              <h3 className="text-3xl font-bold text-brand-900 tracking-tight">Fichas de Bienestar</h3>
+            </div>
+            <span className="text-xs tracking-widest font-semibold text-brand-600/50 uppercase">Data Viva 2025</span>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {isLoading ? (
-              // Loading Skeletons
-              Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} className="glass-card p-6 h-48 animate-pulse flex flex-col justify-between">
-                  <div className="flex justify-between">
-                    <div className="w-12 h-12 bg-slate-200 rounded-2xl" />
-                    <div className="w-16 h-6 bg-slate-100 rounded-full" />
-                  </div>
-                  <div>
-                    <div className="w-24 h-4 bg-slate-200 rounded mb-2" />
-                    <div className="w-16 h-8 bg-slate-200 rounded" />
-                  </div>
-                  <div className="w-full h-3 bg-slate-100 rounded mt-4" />
-                </div>
-              ))
+              <ZenLoader />
             ) : (
               metrics.map((metric, index) => (
                 <StatCard 
@@ -88,24 +103,32 @@ function App() {
           </div>
         </section>
 
+        <HiddenGems />
+
+        <GlobalRadar />
+
+        <MythsVsFacts />
+
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <TrendChart 
             title="Esperanza de Vida"
             description="Progreso histórico desde 1975 hasta hoy."
+            reflectiveText="El salto histórico en nuestra esperanza de vida es una victoria comunitaria. Demuestra la resiliencia de nuestro tejido social y la universalidad de nuestro cuidado sanitario."
             data={historicalLifeExpectancy}
             dataKey="avg"
             xAxisKey="year"
-            color="#0ea5e9"
+            color="#789b88"
             delay={0.4}
             yAxisDomain={[70, 85]}
           />
           <TrendChart 
             title="Tasa de Abandono Escolar (%)"
             description="El mínimo histórico alcanzado en las últimas dos décadas."
+            reflectiveText="La reducción del abandono es nuestro mayor acto de fe con el mañana. Hoy, miles de jóvenes han dejado de quedarse atrás y permanecen en las aulas."
             data={schoolDropoutRate}
             dataKey="value"
             xAxisKey="year"
-            color="#8b5cf6"
+            color="#c9b183"
             delay={0.6}
             yAxisDomain={[0, 40]}
           />
@@ -116,8 +139,8 @@ function App() {
         </section>
       </main>
 
-      <footer className="mt-12 py-8 text-center text-slate-500 text-sm border-t border-slate-200">
-        <p>Construido con ❤️ usando Vite, React, Tailwind CSS y datos públicos.</p>
+      <footer className="mt-12 py-8 text-center text-earth-800/40 text-sm border-t border-brand-50">
+        <p>Construido con ❤️ combinando datos del Banco Mundial e INE.</p>
       </footer>
     </div>
   );

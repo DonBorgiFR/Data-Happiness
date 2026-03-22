@@ -7,19 +7,18 @@ import { regionalData, getRegionalValue } from '../data/regionalData';
 const geoUrl = '/spain-ccaa.json';
 
 const colorScale = scaleQuantize<string>()
-  .domain([81, 85]) // Rango aproximado de esperanza de vida regional
+  .domain([81, 87]) 
   .range([
-    '#fef08a', // yellow-200
-    '#67e8f9', // cyan-300
-    '#38bdf8', // light-blue-400
-    '#3b82f6', // blue-500
-    '#4f46e5', // indigo-600
+    '#e1e9e3', // brand-100
+    '#b4c9bc', // mid-sage
+    '#789b88', // brand-500
+    '#5b7b69', // brand-600
+    '#2c3f35', // brand-900
   ]);
 
 export function SpainMap() {
   const [tooltipContent, setTooltipContent] = useState('');
   const [tooltipSub, setTooltipSub] = useState('');
-  const [tooltipVal, setTooltipVal] = useState<number | null>(null);
   
   return (
     <motion.div 
@@ -29,24 +28,30 @@ export function SpainMap() {
       className="glass-card p-6 md:p-8 relative flex flex-col md:flex-row gap-8 items-center"
     >
       <div className="w-full md:w-1/2">
-        <h3 className="text-2xl font-bold text-slate-900 mb-2">España por Comunidades</h3>
-        <p className="text-slate-600 mb-6">Explora el índice de bienestar general (simulado mediante esperanza de vida y otros factores) por Comunidad Autónoma. Pasa el cursor sobre el mapa para descubrir los detalles.</p>
+        <h3 className="text-2xl font-bold text-brand-900 mb-2 tracking-tight">El Mapa Social de España</h3>
+        <p className="text-earth-800/70 mb-8 leading-relaxed">
+          Nuestra nación vista a través de la lente del bienestar mutuo. Las regiones en tono dorado lideran el Índice Multidimensional de Calidad de Vida absoluto.
+        </p>
         
-        <div className="min-h-[150px] flex items-center justify-center p-6 bg-slate-50 rounded-2xl border border-slate-100">
+        <div className="min-h-[160px] flex items-center justify-center p-6 bg-brand-50/50 rounded-3xl border border-brand-100 shadow-inner">
           <AnimatePresence mode="wait">
             {tooltipContent ? (
               <motion.div
                 key="tooltip"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className="text-center"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="text-center w-full"
               >
-                <h4 className="text-xl font-bold text-brand-600">{tooltipContent}</h4>
-                <div className="text-3xl font-extrabold text-slate-900 my-2">
-                  {tooltipVal} <span className="text-sm font-medium text-slate-500">puntos</span>
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <h4 className="text-xl font-bold text-brand-600 tracking-wide">{tooltipContent}</h4>
+                  {['Comunidad Foral de Navarra', 'La Rioja', 'País Vasco'].includes(tooltipContent) && (
+                    <span className="text-xl" title="Medalla de Oro en IMCV">🥇</span>
+                  )}
                 </div>
-                <p className="text-sm text-slate-600">{tooltipSub}</p>
+                <p className="text-sm font-medium text-earth-800 leading-relaxed italic border-l-2 border-brand-400 pl-4 text-left">
+                  "{tooltipSub}"
+                </p>
               </motion.div>
             ) : (
               <motion.div
@@ -54,9 +59,9 @@ export function SpainMap() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="text-slate-400 text-sm font-medium"
+                className="text-brand-900/30 text-sm font-semibold tracking-widest uppercase"
               >
-                Pasa el cursor sobre una región
+                Explora las regiones
               </motion.div>
             )}
           </AnimatePresence>
@@ -68,7 +73,7 @@ export function SpainMap() {
           projection="geoMercator"
           projectionConfig={{
             scale: 2200,
-            center: [-3.5, 39.5] // Centro de la península ibérica
+            center: [-3.5, 39.5] 
           }}
           className="w-full h-full"
         >
@@ -78,27 +83,26 @@ export function SpainMap() {
                 const name = geo.properties.NAME_1;
                 const value = getRegionalValue(name);
                 const regionInfo = regionalData.find(d => d.name === name);
+                const isGolden = ['Comunidad Foral de Navarra', 'La Rioja', 'País Vasco'].includes(name);
                 
                 return (
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    fill={colorScale(value) || '#e2e8f0'}
-                    stroke="#ffffff"
-                    strokeWidth={0.5}
+                    fill={isGolden ? '#eab308' : (colorScale(value) || '#e1e9e3')}
+                    stroke="var(--surface-color, #ffffff)"
+                    strokeWidth={0.8}
                     style={{
                       default: { outline: 'none', transition: 'all 250ms' },
-                      hover: { fill: '#ec4899', outline: 'none', cursor: 'pointer', transform: 'translateY(-2px)' },
-                      pressed: { fill: '#be185d', outline: 'none' },
+                      hover: { fill: isGolden ? '#fef08a' : '#c9b183', outline: 'none', cursor: 'pointer', transform: 'translateY(-3px)', filter: 'drop-shadow(0 10px 10px rgba(0,0,0,0.1))' },
+                      pressed: { fill: '#a89063', outline: 'none' },
                     }}
                     onMouseEnter={() => {
                       setTooltipContent(name);
-                      setTooltipVal(value);
                       setTooltipSub(regionInfo?.description || '');
                     }}
                     onMouseLeave={() => {
                       setTooltipContent('');
-                      setTooltipVal(null);
                       setTooltipSub('');
                     }}
                   />
