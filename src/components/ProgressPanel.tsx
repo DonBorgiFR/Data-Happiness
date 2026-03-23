@@ -23,7 +23,7 @@ export function ProgressPanel({ unlockedAchievements, lockedAchievements }: Prog
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute bottom-16 right-0 w-80 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-brand-100/50 overflow-hidden"
+            className="absolute bottom-16 right-0 w-80 bg-white/95 dark:bg-[var(--progress-bg)] backdrop-blur-xl rounded-2xl shadow-2xl border border-brand-100/50 overflow-hidden"
           >
             <div className="p-4 border-b border-brand-50">
               <h4 className="font-bold text-brand-900 flex items-center gap-2">
@@ -50,7 +50,7 @@ export function ProgressPanel({ unlockedAchievements, lockedAchievements }: Prog
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.05 }}
-                  className="flex items-center gap-3 p-2 rounded-xl bg-amber-50/50 border border-amber-100/50"
+                  className="flex items-center gap-3 p-2 rounded-xl bg-amber-50/50 dark:bg-amber-900/20 border border-amber-100/50 dark:border-amber-800/30"
                 >
                   <div className={`p-1.5 rounded-lg ${achievement.bgColor}`}>
                     <achievement.icon className={`w-4 h-4 ${achievement.color}`} />
@@ -65,13 +65,13 @@ export function ProgressPanel({ unlockedAchievements, lockedAchievements }: Prog
               {lockedAchievements.map((achievement) => (
                 <div
                   key={achievement.id}
-                  className="flex items-center gap-3 p-2 rounded-xl bg-brand-50/30 border border-brand-50/30 opacity-50"
+                  className="flex items-center gap-3 p-2 rounded-xl bg-brand-50/30 border border-brand-50/30 opacity-50 dark:opacity-40"
                 >
                   <div className="p-1.5 rounded-lg bg-brand-100">
                     <Lock className="w-4 h-4 text-brand-400" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-brand-700 truncate">{achievement.title}</p>
+                    <p className="text-sm font-medium text-brand-600 truncate">{achievement.title}</p>
                     <p className="text-xs text-brand-500/60 truncate">{achievement.requirement}</p>
                   </div>
                 </div>
@@ -81,13 +81,13 @@ export function ProgressPanel({ unlockedAchievements, lockedAchievements }: Prog
         )}
       </AnimatePresence>
 
-      <motion.button
+        <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsExpanded(!isExpanded)}
-        className="relative flex items-center justify-center w-14 h-14 bg-gradient-to-br from-amber-100 to-yellow-100 rounded-2xl shadow-lg border border-amber-200/50 hover:from-amber-200 hover:to-yellow-200 transition-all"
+        className="relative flex items-center justify-center w-14 h-14 bg-gradient-to-br from-amber-100 to-yellow-100 dark:from-amber-900/60 dark:to-yellow-900/40 rounded-2xl shadow-lg border border-amber-200/50 dark:border-amber-800/50 hover:from-amber-200 hover:to-yellow-200 transition-all"
       >
-        <Trophy className="w-6 h-6 text-amber-600" />
+        <Trophy className="w-6 h-6 text-amber-600 dark:text-amber-400" />
         {unlockedAchievements.length > 0 && (
           <span className="absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-amber-500 rounded-full">
             {unlockedAchievements.length}

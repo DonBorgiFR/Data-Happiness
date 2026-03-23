@@ -6,14 +6,24 @@ import { regionalData, getRegionalValue } from '../data/regionalData';
 
 const geoUrl = '/spain-ccaa.json';
 
+interface GeographyProperties {
+  NAME_1: string;
+  [key: string]: unknown;
+}
+
+interface GeographyObject {
+  rsmKey: string;
+  properties: GeographyProperties;
+}
+
 const colorScale = scaleQuantize<string>()
   .domain([81, 87]) 
   .range([
-    '#e1e9e3', // brand-100
-    '#b4c9bc', // mid-sage
-    '#789b88', // brand-500
-    '#5b7b69', // brand-600
-    '#2c3f35', // brand-900
+    '#e1e9e3',
+    '#b4c9bc',
+    '#789b88',
+    '#5b7b69',
+    '#2c3f35',
   ]);
 
 export function SpainMap() {
@@ -78,8 +88,8 @@ export function SpainMap() {
           className="w-full h-full"
         >
           <Geographies geography={geoUrl}>
-            {({ geographies }: { geographies: any[] }) =>
-              geographies.map((geo: any) => {
+            {({ geographies }: { geographies: GeographyObject[] }) =>
+              geographies.map((geo: GeographyObject) => {
                 const name = geo.properties.NAME_1;
                 const value = getRegionalValue(name);
                 const regionInfo = regionalData.find(d => d.name === name);

@@ -109,28 +109,34 @@ export function useGamification() {
   const [achievements] = useState<Achievement[]>(initialAchievements);
   const [newAchievement, setNewAchievement] = useState<Achievement | null>(null);
 
+  useEffect(() => {
+    const initialUnlock = progress.achievements.includes('first_visit');
+    if (!initialUnlock && progress.timeSpent > 0) {
+      unlockAchievement('first_visit');
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+  }, [progress]);
+
   const unlockAchievement = useCallback((achievementId: string) => {
     setProgress(prev => {
       if (prev.achievements.includes(achievementId)) return prev;
-
+      
       const achievement = achievements.find(a => a.id === achievementId);
       if (achievement) {
         setTimeout(() => {
           setNewAchievement({ ...achievement, unlockedAt: new Date() });
         }, 300);
       }
-
+      
       return {
         ...prev,
         achievements: [...prev.achievements, achievementId]
       };
     });
   }, [achievements]);
-
-
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-  }, [progress]);
 
   const trackSectionView = useCallback((section: string) => {
     setProgress(prev => {
@@ -187,10 +193,6 @@ export function useGamification() {
   }, [unlockAchievement]);
 
   const incrementTime = useCallback(() => {
-    // Check for first visit achievement on first tick
-    if (progress.timeSpent === 0 && progress.achievements.length === 0) {
-      unlockAchievement('first_visit');
-    }
     setProgress(prev => {
       const newTime = prev.timeSpent + 1;
       

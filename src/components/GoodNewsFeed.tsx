@@ -128,7 +128,7 @@ export function GoodNewsFeed() {
   const currentNews = positiveNews[currentIndex];
 
   return (
-    <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-50 via-white to-brand-100/30 border border-brand-100/50">
+    <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-50 via-white to-brand-100/30 dark:from-[var(--news-bg)] dark:via-[var(--news-card)] border border-brand-100/50">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-100/40 via-transparent to-transparent" />
       
       <div className="relative p-8 md:p-10">
@@ -179,7 +179,7 @@ export function GoodNewsFeed() {
             >
               <div className="flex-1 space-y-4">
                 <div className="flex items-center gap-3">
-                  <span className="px-3 py-1 text-xs font-bold tracking-wider uppercase bg-brand-100/60 text-brand-700 rounded-full">
+                  <span className="px-3 py-1 text-xs font-bold tracking-wider uppercase bg-brand-100/60 text-brand-600 rounded-full">
                     {categoryLabels[currentNews.category]}
                   </span>
                   <span className="text-sm text-brand-600/50">{currentNews.date}</span>
@@ -187,13 +187,13 @@ export function GoodNewsFeed() {
                 <h4 className="text-xl font-bold text-brand-900 leading-tight">
                   {currentNews.title}
                 </h4>
-                <p className="text-brand-800/70 leading-relaxed">
+                <p className="text-brand-900/70 leading-relaxed">
                   {currentNews.summary}
                 </p>
               </div>
               
-              <div className="flex flex-col items-center justify-center p-6 bg-white/60 rounded-2xl border border-brand-100/50 min-w-[140px]">
-                <currentNews.icon className={`h-10 w-10 ${currentNews.color} mb-2`} />
+              <div className="flex flex-col items-center justify-center p-6 bg-white/60 border border-brand-100/50 min-w-[140px]">
+                <currentNews.icon className={`h-10 w-10 ${currentNews.color} mb-2 dark:brightness-110`} style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }} />
                 <span className="text-2xl font-black text-brand-900">{currentNews.metric}</span>
               </div>
             </motion.div>

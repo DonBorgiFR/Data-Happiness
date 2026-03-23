@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
 import { modernRemedies } from '../data/mockData';
+import type { LucideIcon } from 'lucide-react';
 import { Activity, Users, Wind, Utensils, BookOpen, Moon, BrainCircuit, Smile, Compass, Heart } from 'lucide-react';
 
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   Activity,
   Users,
   Wind,

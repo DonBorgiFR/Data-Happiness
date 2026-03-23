@@ -44,7 +44,7 @@ export function HiddenGems() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.2, duration: 0.8 }}
-              className="bg-surface-card backdrop-blur-lg rounded-[2rem] p-8 md:p-10 border border-brand-50 hover:shadow-[0_10px_30px_rgba(120,155,136,0.08)] hover:-translate-y-1 transition-all duration-500 ease-out"
+              className="bg-surface-card backdrop-blur-lg rounded-[2rem] p-8 md:p-10 border border-brand-50 hover:shadow-[0_10px_30px_rgba(120,155,136,0.08)] dark:hover:shadow-[0_10px_30px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all duration-500 ease-out"
             >
               <div className="flex gap-6 items-start">
                 <div className="p-4 rounded-[1.5rem] bg-brand-100/50 text-brand-600 shrink-0">

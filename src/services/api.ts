@@ -101,7 +101,7 @@ export async function fetchLiveMetrics(): Promise<Metric[]> {
 
     const enriched = metrics.map(m => ({
       ...m,
-      source: (m as any).source || 'Datos INE 2024'
+      source: (m as Metric & { source?: string }).source || 'Datos INE 2024'
     }));
 
     await new Promise(resolve => setTimeout(resolve, 800));

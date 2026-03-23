@@ -41,7 +41,7 @@ export function GlobalRadar() {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="my-16 glass-card p-8 md:p-12 w-full flex flex-col lg:flex-row items-center gap-12"
+      className="my-16 glass-card p-8 md:p-12 w-full flex flex-col lg:flex-row items-center gap-12 bg-white/40 dark:bg-[var(--radar-bg)]"
     >
       <div className="w-full lg:w-1/3 space-y-4 text-center lg:text-left">
         <h3 className="text-3xl font-bold text-brand-900 tracking-tight">Radar del Bienestar</h3>

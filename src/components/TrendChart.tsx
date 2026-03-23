@@ -9,11 +9,16 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+interface TrendChartDataPoint {
+  year: number;
+  [key: string]: number | string;
+}
+
 interface TrendChartProps {
   title: string;
   description: string;
   reflectiveText?: string;
-  data: any[];
+  data: TrendChartDataPoint[];
   dataKey: string;
   xAxisKey: string;
   color?: string;
@@ -37,7 +42,7 @@ export function TrendChart({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.8, ease: "easeOut" }}
-      className="glass-card p-6 md:p-8 w-full flex flex-col"
+      className="glass-card p-6 md:p-8 w-full flex flex-col bg-white/40 dark:bg-[var(--charts-bg)]"
     >
       <div className="mb-8">
         <h3 className="text-2xl font-bold text-brand-900 tracking-tight">{title}</h3>
@@ -74,11 +79,11 @@ export function TrendChart({
                 border: '1px solid var(--color-b100)', 
                 backgroundColor: 'var(--surface-card)',
                 backdropFilter: 'blur(12px)',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.05)',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
                 color: 'var(--e800)'
               }}
               cursor={{ stroke: color, strokeWidth: 1, strokeDasharray: '5 5', opacity: 0.5 }}
-              itemStyle={{ fontWeight: 800, color: '#2c3f35', fontSize: '18px' }}
+              itemStyle={{ fontWeight: 800, color: 'var(--e800)', fontSize: '18px' }}
             />
             <Area 
               type="monotone" 
@@ -101,7 +106,7 @@ export function TrendChart({
           className="mt-8 p-5 rounded-3xl bg-brand-50/60 border border-brand-100 flex flex-col sm:flex-row items-center sm:items-start gap-4"
         >
           <div className="text-3xl hidden sm:block">🌱</div>
-          <p className="text-[15px] text-[#3d3831]/80 italic leading-relaxed sm:text-left text-center">
+          <p className="text-[15px] text-earth-800/80 italic leading-relaxed sm:text-left text-center">
             "{reflectiveText}"
           </p>
         </motion.div>

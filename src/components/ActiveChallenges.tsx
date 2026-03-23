@@ -48,7 +48,7 @@ export function ActiveChallenges() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.15, duration: 0.6, ease: "easeOut" }}
-              className="group bg-white/60 dark:bg-black/20 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-brand-100 shadow-sm hover:shadow-xl hover:-translate-y-2 hover:border-brand-300 transition-all duration-500"
+              className="group bg-white/60 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-10 border border-brand-100 shadow-sm hover:shadow-xl hover:-translate-y-2 hover:border-brand-300 transition-all duration-500"
             >
               <div className="flex flex-col gap-8">
                 <div className="flex items-center gap-5 border-b border-brand-100/50 pb-5">
@@ -59,9 +59,9 @@ export function ActiveChallenges() {
                 </div>
                 
                 <div className="space-y-6">
-                  <div className="bg-earth-50/50 p-5 rounded-3xl border border-earth-100/50">
-                    <span className="text-[11px] font-black uppercase tracking-[0.2em] text-earth-500 mb-2 block">El Impacto Actual</span>
-                    <p className="text-earth-800 leading-relaxed text-[15px]">{challenge.problem}</p>
+                  <div className="bg-earth-50/50 dark:bg-zinc-800/50 p-5 rounded-3xl border border-earth-100/50 dark:border-zinc-700/50">
+                    <span className="text-[11px] font-black uppercase tracking-[0.2em] text-earth-500 dark:text-zinc-400 mb-2 block">El Impacto Actual</span>
+                    <p className="text-earth-800 dark:text-zinc-200 leading-relaxed text-[15px]">{challenge.problem}</p>
                   </div>
                   <div className="bg-brand-50/50 p-5 rounded-3xl border border-brand-100/50">
                     <span className="text-[11px] font-black uppercase tracking-[0.2em] text-brand-600 mb-2 block">La Acción Colectiva</span>
