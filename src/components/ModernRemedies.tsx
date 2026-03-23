@@ -51,9 +51,9 @@ export function ModernRemedies() {
 
               <div className="space-y-5">
                 <div>
-                  <span className="text-[10px] font-black uppercase tracking-[0.15em] text-earth-400 block mb-2">La Disfunción Social</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.15em] text-earth-400 block mb-2">{item.evil}</span>
                   <p className="text-earth-700 text-[14.5px] leading-relaxed border-l-2 border-earth-200 pl-4 py-1">
-                    <strong className="font-bold text-earth-900">{item.evil}:</strong> {item.evilDescription}
+                    {item.evilDescription}
                   </p>
                 </div>
                 <div>
