@@ -36,38 +36,38 @@ export function StateAsHousehold() {
           <div className="bg-white/95 dark:bg-[var(--household-card)] backdrop-blur-3xl rounded-[3.5rem] p-8 md:p-16 border border-brand-100 shadow-[0_40px_100px_-20px_rgba(30,50,40,0.1)] dark:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.5)] relative">
           
           {/* Header Section: Collected vs Spent Summary */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 border-b-[4px] border-dashed border-zinc-100 dark:border-zinc-800 pb-16">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
-                <ArrowUpRight className="w-5 h-5" />
-                <p className="text-[11px] font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Total Recaudado</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 border-b-[4px] border-dashed border-brand-100/50 pb-16">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2 text-emerald-600">
+                <ArrowUpRight className="w-4 h-4" />
+                <p className="text-[10px] font-black uppercase tracking-widest text-earth-800/60">Total Recaudado</p>
               </div>
-              <p className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-zinc-100">
-                {stateFinanceSummary.collected.toFixed(2).replace('.', ',')} €
+              <p className="text-4xl md:text-5xl font-black text-brand-900 tracking-tight">
+                {stateFinanceSummary.collected.toFixed(2).replace('.', ',')} <span className="text-brand-400 text-3xl">€</span>
               </p>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">De impuestos y fondos estructurales.</p>
+              <p className="text-[11px] text-earth-800/60 font-medium pt-1">Impuestos y fondos europeos.</p>
             </div>
             
-            <div className="space-y-2">
+            <div className="space-y-1">
               <div className="flex items-center gap-2 text-brand-600">
-                <ArrowDownRight className="w-5 h-5" />
-                <p className="text-[11px] font-black uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Total Gastado</p>
+                <ArrowDownRight className="w-4 h-4" />
+                <p className="text-[10px] font-black uppercase tracking-widest text-earth-800/60">Total Gastado</p>
               </div>
-              <p className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-zinc-100">
-                {stateFinanceSummary.spent.toFixed(2).replace('.', ',')} €
+              <p className="text-4xl md:text-5xl font-black text-brand-900 tracking-tight">
+                {stateFinanceSummary.spent.toFixed(2).replace('.', ',')} <span className="text-brand-400 text-3xl">€</span>
               </p>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">En servicios e inversiones vivas.</p>
+              <p className="text-[11px] text-earth-800/60 font-medium pt-1">Servicios e inversiones de vida.</p>
             </div>
 
-            <div className="bg-zinc-50 dark:bg-zinc-800/70 p-6 rounded-[2rem] border border-zinc-100 dark:border-zinc-700 flex flex-col justify-center">
-              <div className="flex items-center gap-2 text-rose-600 dark:text-rose-400 mb-2">
-                <TrendingDown className="w-5 h-5" />
-                <p className="text-[11px] font-black uppercase tracking-widest">Diferencia / Déficit</p>
+            <div className="bg-brand-50/50 p-6 rounded-[2rem] border border-brand-100 flex flex-col justify-center">
+              <div className="flex items-center gap-2 text-rose-500 mb-2">
+                <TrendingDown className="w-4 h-4" />
+                <p className="text-[10px] font-black uppercase tracking-widest">Diferencia (Déficit)</p>
               </div>
-              <p className="text-3xl font-black text-rose-600 dark:text-rose-400">
-                {stateFinanceSummary.balance.toFixed(2).replace('.', ',')} €
+              <p className="text-3xl font-black text-rose-600 tracking-tight">
+                {stateFinanceSummary.balance.toFixed(2).replace('.', ',')} <span className="text-rose-400 text-2xl">€</span>
               </p>
-              <p className="text-[10px] text-zinc-500 dark:text-zinc-400 font-bold uppercase mt-1">Financiado mediante deuda común</p>
+              <p className="text-[10px] text-brand-800/50 font-bold uppercase mt-1">Financiado mediante deuda</p>
             </div>
           </div>
 

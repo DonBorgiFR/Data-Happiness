@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Sprout, Brain, Home, FlaskConical } from 'lucide-react';
+import { Sprout, Brain, Home, FlaskConical, Check } from 'lucide-react';
 
 const challenges = [
   {
@@ -58,14 +58,14 @@ export function ActiveChallenges() {
                   <h4 className="text-2xl font-bold text-brand-900 tracking-tight">{challenge.title}</h4>
                 </div>
                 
-                <div className="space-y-6">
-                  <div className="bg-earth-50/50 dark:bg-zinc-800/50 p-5 rounded-3xl border border-earth-100/50 dark:border-zinc-700/50">
-                    <span className="text-[11px] font-black uppercase tracking-[0.2em] text-earth-500 dark:text-zinc-400 mb-2 block">El Impacto Actual</span>
-                    <p className="text-earth-800 dark:text-zinc-200 leading-relaxed text-[15px]">{challenge.problem}</p>
-                  </div>
-                  <div className="bg-brand-50/50 p-5 rounded-3xl border border-brand-100/50">
-                    <span className="text-[11px] font-black uppercase tracking-[0.2em] text-brand-600 mb-2 block">La Acción Colectiva</span>
-                    <p className="text-brand-800 font-medium leading-relaxed text-[15px]">{challenge.action}</p>
+                <div className="space-y-5">
+                  <p className="text-earth-800 leading-relaxed text-[15px] px-1 md:px-2">{challenge.problem}</p>
+                  
+                  <div className="bg-brand-50/80 p-5 rounded-3xl border border-brand-100 flex items-start gap-4">
+                    <div className="p-1.5 rounded-full bg-brand-200/50 text-brand-700 shrink-0 mt-0.5">
+                      <Check className="w-4 h-4 stroke-[3]" />
+                    </div>
+                    <p className="text-brand-900 font-medium leading-relaxed text-[14px]">{challenge.action}</p>
                   </div>
                 </div>
               </div>
