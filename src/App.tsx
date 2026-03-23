@@ -1,4 +1,4 @@
-import { Activity, Sparkles, Moon, Sun } from 'lucide-react';
+import { Activity, Sparkles, Moon, Sun, Coffee } from 'lucide-react';
 import { Hero } from './components/Hero';
 import { StatCard } from './components/StatCard';
 import { TrendChart } from './components/TrendChart';
@@ -196,9 +196,20 @@ function App() {
         <AuthorProfile />
       </main>
 
-      <footer className="mt-12 py-8 text-center text-earth-800/40 text-sm border-t border-brand-50">
-        <p>Construido con ❤️ combinando datos del Banco Mundial, OCDE e INE.</p>
-        <p className="mt-2 text-[11px] font-bold tracking-widest uppercase">© 2026 Borja Félix Rojas. Todos los derechos reservados.</p>
+      <footer className="mt-12 py-10 text-center border-t border-brand-50 flex flex-col items-center gap-6">
+        <a 
+          href="https://ko-fi.com/borjafelixrojas" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="group flex items-center gap-2 px-5 py-2.5 bg-brand-50 hover:bg-brand-100 text-brand-600 rounded-full text-sm font-medium transition-all shadow-sm border border-brand-100 hover:shadow-md hover:-translate-y-0.5"
+        >
+          <Coffee className="w-4 h-4 text-brand-500 group-hover:scale-110 transition-transform" />
+          <span>Apoya este proyecto</span>
+        </a>
+        <div className="text-earth-800/40 text-sm space-y-1">
+          <p>Construido con ❤️ combinando datos del Banco Mundial, OCDE e INE.</p>
+          <p className="mt-2 text-[11px] font-bold tracking-widest uppercase">© 2026 Borja Félix Rojas. Todos los derechos reservados.</p>
+        </div>
       </footer>
 
       <AchievementNotification 
