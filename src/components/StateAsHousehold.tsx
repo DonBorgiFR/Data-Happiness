@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { householdBudget, stateFinanceSummary } from '../data/mockData';
 import type { LucideIcon } from 'lucide-react';
-import { Heart, Activity, BookOpen, Umbrella, FlaskConical, Shield, Home, ArrowUpRight, ArrowDownRight, TrendingDown } from 'lucide-react';
+import { Heart, Activity, BookOpen, Umbrella, FlaskConical, Shield, Home, ArrowUpRight, ArrowDownRight, TrendingDown, TrendingUp, AlertCircle, Minus } from 'lucide-react';
 
 const iconMap: Record<string, LucideIcon> = { Heart, Activity, BookOpen, Umbrella, FlaskConical, Shield, Home };
 
@@ -98,9 +98,22 @@ export function StateAsHousehold() {
                       <div className={`p-4 rounded-2xl ${item.color} text-white shadow-lg shadow-${item.color.split('-')[1]}/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
                         <Icon className="w-6 h-6" />
                       </div>
-                      <div className="space-y-1">
-                        <p className="font-black text-lg text-zinc-900 dark:text-zinc-100 leading-tight">{item.category}</p>
-                        <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">Asignación por cada 100€ gastados</p>
+                      <div className="space-y-2">
+                        <div className="space-y-0.5">
+                          <p className="font-black text-lg text-zinc-900 dark:text-zinc-100 leading-tight">{item.category}</p>
+                          <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium hidden sm:block">Asignación por cada 100€ gastados</p>
+                        </div>
+                        {item.trendDir && item.trendText && (
+                          <div className="flex items-start gap-1.5 opacity-90 pt-1">
+                            {item.trendDir === 'up' && <TrendingUp className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />}
+                            {item.trendDir === 'down' && <TrendingDown className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />}
+                            {item.trendDir === 'alert' && <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />}
+                            {item.trendDir === 'stable' && <Minus className="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" />}
+                            <span className="text-xs leading-snug font-medium text-zinc-600 dark:text-zinc-400 max-w-[32ch] xl:max-w-[40ch]">
+                              {item.trendText}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </div>
                     

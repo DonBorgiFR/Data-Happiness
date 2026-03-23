@@ -244,13 +244,13 @@ export const modernRemedies = [
 ];
 
 export const householdBudget = [
-  { id: 'pensiones', category: 'Cuidado de Mayores (Pensiones)', amount: 28.8, color: 'bg-amber-400', icon: 'Heart' },
-  { id: 'sanidad', category: 'Salud Familiar (Sanidad)', amount: 15.1, color: 'bg-emerald-400', icon: 'Activity' },
-  { id: 'educacion', category: 'Formación de los Hijos (Educación)', amount: 11.2, color: 'bg-blue-400', icon: 'BookOpen' },
-  { id: 'desempleo', category: 'Fondo de Emergencia (Paro)', amount: 3.5, color: 'bg-violet-400', icon: 'Umbrella' },
-  { id: 'ciencia', category: 'Inversión Futuro (I+D+i)', amount: 3.5, color: 'bg-cyan-400', icon: 'FlaskConical' },
-  { id: 'defensa', category: 'Seguridad (Defensa)', amount: 2.3, color: 'bg-slate-400', icon: 'Shield' },
-  { id: 'resto', category: 'Mantenimiento y Deudas (Infraestructuras, Adm., Intereses)', amount: 35.6, color: 'bg-stone-300', icon: 'Home' },
+  { id: 'pensiones', category: 'Cuidado de Mayores (Pensiones)', amount: 28.8, color: 'bg-amber-400', icon: 'Heart', trendDir: 'up', trendText: 'Subiendo por reto demográfico. Garantiza la dignidad vital tras años de esfuerzo.' },
+  { id: 'sanidad', category: 'Salud Familiar (Sanidad)', amount: 15.1, color: 'bg-emerald-400', icon: 'Activity', trendDir: 'stable', trendText: 'Crecimiento sostenido. Existe una clara oportunidad de mejora en salud mental preventiva.' },
+  { id: 'educacion', category: 'Formación de los Hijos (Educación)', amount: 11.2, color: 'bg-blue-400', icon: 'BookOpen', trendDir: 'up', trendText: 'Aumento progresivo. Inversión crítica e indispensable para competir en innovación global.' },
+  { id: 'desempleo', category: 'Fondo de Emergencia (Paro)', amount: 3.5, color: 'bg-violet-400', icon: 'Umbrella', trendDir: 'down', trendText: 'Gasto a la baja gracias al récord sostenido de empleo. Demuestra un fuerte músculo social.' },
+  { id: 'ciencia', category: 'Inversión Futuro (I+D+i)', amount: 3.5, color: 'bg-cyan-400', icon: 'FlaskConical', trendDir: 'alert', trendText: 'Falta inversión agresiva. Necesitamos un pacto urgente para retener el talento investigador.' },
+  { id: 'defensa', category: 'Seguridad (Defensa)', amount: 2.3, color: 'bg-slate-400', icon: 'Shield', trendDir: 'up', trendText: 'Subiendo gradualmente según los compromisos de estabilidad europeos y globales.' },
+  { id: 'resto', category: 'Mantenimiento (Infra., Adm., Intereses)', amount: 35.6, color: 'bg-stone-300', icon: 'Home', trendDir: 'alert', trendText: 'Alta inercia por intereses de la deuda histórica. Es el punto de mayor fuga estructural hoy.' },
 ];
 
 export const stateFinanceSummary = {
