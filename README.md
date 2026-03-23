@@ -80,3 +80,22 @@ data-happiness/
 ## Licencia
 
 © 2026 Borja Félix Rojas. Todos los derechos reservados.
+
+---
+
+## Próxima Sesión: Revisión de Paneles
+
+Antes de continuar con nuevas funcionalidades, revisar conjuntamente:
+
+1. **Estilo Visual**: ¿Los paneles siguen la identidad "Glassmorphism" y paleta de colores consistente?
+2. **Calidad de Datos**: ¿La información mostrada es precisa y está actualizada?
+3. **Asertividad**: ¿Los mensajes y métricas comunican efectivamente el progreso positivo?
+4. **UX/UI**: ¿Las animaciones y transiciones mejoran la experiencia?
+5. **Gamification**: ¿Los logros se unlockean correctamente?
+
+**Componentes a revisar:**
+- StatCard (fichas de bienestar)
+- GoodNewsFeed (carrusel de noticias)
+- TrendChart (gráficos históricos)
+- SpainMap (mapa interactivo)
+- AchievementNotification / ProgressPanel (gamification)
