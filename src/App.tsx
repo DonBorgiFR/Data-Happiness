@@ -3,20 +3,38 @@ import { Hero } from './components/Hero';
 import { StatCard } from './components/StatCard';
 import { TrendChart } from './components/TrendChart';
 import { SpainMap } from './components/SpainMap';
+import { StateAsHousehold } from './components/StateAsHousehold';
 import { ZenLoader } from './components/ZenLoader';
 import { HiddenGems } from './components/HiddenGems';
 import { MythsVsFacts } from './components/MythsVsFacts';
 import { GlobalRadar } from './components/GlobalRadar';
 import { AuthorProfile } from './components/AuthorProfile';
+import { ActiveChallenges } from './components/ActiveChallenges';
+import { ModernRemedies } from './components/ModernRemedies';
+import { GoodNewsFeed } from './components/GoodNewsFeed';
+import { AchievementNotification } from './components/AchievementNotification';
+import { ProgressPanel } from './components/ProgressPanel';
+import { useGamification } from './hooks/useGamification';
 import { mainMetrics as initialMetrics, historicalLifeExpectancy, schoolDropoutRate } from './data/mockData';
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { fetchLiveMetrics } from './services/api';
 
 function App() {
   const [metrics, setMetrics] = useState(initialMetrics);
   const [isLoading, setIsLoading] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const {
+    unlockedAchievements,
+    lockedAchievements,
+    newAchievement,
+    trackMetricView,
+    trackTrendsView,
+    trackMapInteraction,
+    incrementTime,
+    dismissAchievement,
+  } = useGamification();
 
   useEffect(() => {
     if (isDarkMode) {
@@ -35,6 +53,25 @@ function App() {
     }
     loadData();
   }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      incrementTime();
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [incrementTime]);
+
+  const handleMetricClick = useCallback((metricId: string) => {
+    trackMetricView(metricId);
+  }, [trackMetricView]);
+
+  const handleTrendsView = useCallback(() => {
+    trackTrendsView();
+  }, [trackTrendsView]);
+
+  const handleMapClick = useCallback(() => {
+    trackMapInteraction();
+  }, [trackMapInteraction]);
 
   return (
     <div className="flex flex-col">
@@ -94,15 +131,22 @@ function App() {
               <ZenLoader />
             ) : (
               metrics.map((metric, index) => (
-                <StatCard 
-                  key={metric.id}
-                  {...metric}
-                  delay={0.1 * index}
-                />
+                <div 
+                  key={metric.id} 
+                  onClick={() => handleMetricClick(metric.id)}
+                  className="cursor-pointer"
+                >
+                  <StatCard 
+                    {...metric}
+                    delay={0.1 * index}
+                  />
+                </div>
               ))
             )}
           </div>
         </section>
+
+        <GoodNewsFeed />
 
         <HiddenGems />
 
@@ -110,18 +154,22 @@ function App() {
 
         <MythsVsFacts />
 
+        <ActiveChallenges />
+
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <TrendChart 
-            title="Esperanza de Vida"
-            description="Progreso histórico desde 1975 hasta hoy."
-            reflectiveText="El salto histórico en nuestra esperanza de vida es una victoria comunitaria. Demuestra la resiliencia de nuestro tejido social y la universalidad de nuestro cuidado sanitario."
-            data={historicalLifeExpectancy}
-            dataKey="avg"
-            xAxisKey="year"
-            color="#789b88"
-            delay={0.4}
-            yAxisDomain={[70, 85]}
-          />
+          <div onClick={handleTrendsView}>
+            <TrendChart 
+              title="Esperanza de Vida"
+              description="Progreso histórico desde 1975 hasta hoy."
+              reflectiveText="El salto histórico en nuestra esperanza de vida es una victoria comunitaria. Demuestra la resiliencia de nuestro tejido social y la universalidad de nuestro cuidado sanitario."
+              data={historicalLifeExpectancy}
+              dataKey="avg"
+              xAxisKey="year"
+              color="#789b88"
+              delay={0.4}
+              yAxisDomain={[70, 85]}
+            />
+          </div>
           <TrendChart 
             title="Tasa de Abandono Escolar (%)"
             description="El mínimo histórico alcanzado en las últimas dos décadas."
@@ -136,8 +184,14 @@ function App() {
         </section>
 
         <section>
-          <SpainMap />
+          <div onClick={handleMapClick}>
+            <SpainMap />
+          </div>
         </section>
+
+        <StateAsHousehold />
+
+        <ModernRemedies />
 
         <AuthorProfile />
       </main>
@@ -146,6 +200,15 @@ function App() {
         <p>Construido con ❤️ combinando datos del Banco Mundial, OCDE e INE.</p>
         <p className="mt-2 text-[11px] font-bold tracking-widest uppercase">© 2026 Borja Félix Rojas. Todos los derechos reservados.</p>
       </footer>
+
+      <AchievementNotification 
+        achievement={newAchievement} 
+        onDismiss={dismissAchievement} 
+      />
+      <ProgressPanel 
+        unlockedAchievements={unlockedAchievements}
+        lockedAchievements={lockedAchievements}
+      />
     </div>
   );
 }

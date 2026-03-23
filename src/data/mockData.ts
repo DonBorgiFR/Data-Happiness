@@ -8,8 +8,24 @@ import {
   Ticket,
   HeartHandshake
 } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
-export const mainMetrics = [
+export interface Metric {
+  id: string;
+  title: string;
+  value: string;
+  suffix: string;
+  trend: string;
+  icon: LucideIcon;
+  color: string;
+  bg: string;
+  description: string;
+  backTitle: string;
+  educationalContext: string;
+  source?: string;
+}
+
+export const mainMetrics: Metric[] = [
   {
     id: 'health',
     title: 'Esperanza de Vida',
@@ -133,3 +149,118 @@ export const schoolDropoutRate = [
   { year: 2024, value: 13.6 },
   { year: 2025, value: 12.8 },
 ];
+
+export const modernRemedies = [
+  {
+    id: 1,
+    evil: 'Parálisis Biológica',
+    evilDescription: 'El sedentarismo moderno no es solo falta de ejercicio, es una desconexión de nuestra naturaleza motriz.',
+    remedy: 'Movilidad Imperativa',
+    remedyLabel: 'Prescripción Física',
+    remedyDescription: 'Mueve tus articulaciones cada hora. El cuerpo estático es un cuerpo que enferma. Camina como acto de rebeldía.',
+    iconName: 'Activity'
+  },
+  {
+    id: 2,
+    evil: 'Desierto Social',
+    evilDescription: 'La hiperconectividad es una ilusión; el aislamiento real debilita el sistema inmune y la salud emocional.',
+    remedy: 'Contacto Real',
+    remedyLabel: 'Vínculo Orgánico',
+    remedyDescription: 'Sustituye el scroll por miradas. Participa en lo común. La tribu no es una opción, es una necesidad evolutiva.',
+    iconName: 'Users'
+  },
+  {
+    id: 3,
+    evil: 'Sobrecarga de Alerta',
+    evilDescription: 'La ansiedad es el ruido de vivir en modo supervivencia constante bajo exigencias artificiales.',
+    remedy: 'Calma Radical',
+    remedyLabel: 'Pausa Biológica',
+    remedyDescription: 'Respira con intención. El descanso no se gana, se respeta. La quietud es la base de toda acción inteligente.',
+    iconName: 'Wind'
+  },
+  {
+    id: 4,
+    evil: 'Comestibles Vacíos',
+    evilDescription: 'Los ultraprocesados son señales químicas confusas para tus células. No alimentan, solo ocupan espacio.',
+    remedy: 'Soberanía Alimentaria',
+    remedyLabel: 'Nutrición Ancestral',
+    remedyDescription: 'Cocina tú mismo. Come alimentos de un solo ingrediente. Tu energía depende de la calidad de tu combustible.',
+    iconName: 'Utensils'
+  },
+  {
+    id: 5,
+    evil: 'Atención Fragmentada',
+    evilDescription: 'El déficit de atención es producto de un diseño digital agresivo que secuestra tu foco para transaccionar contigo.',
+    remedy: 'Concentración Profunda',
+    remedyLabel: 'Enfoque Soberano',
+    remedyDescription: 'Lee libros, no hilos. Estudia sin notificaciones. Recuperar tu atención es recuperar tu vida.',
+    iconName: 'BookOpen'
+  },
+  {
+    id: 6,
+    evil: 'Ruina del Sueño',
+    evilDescription: 'La luz artificial nocturna es un veneno cronobiológico que bloquea la regeneración neuronal.',
+    remedy: 'Oscuridad Sagrada',
+    remedyLabel: 'Ritmo Circadiano',
+    remedyDescription: 'Apaga las pantallas al atardecer. Respeta los ciclos del sol. Dormir es el mayor acto de autocuración posible.',
+    iconName: 'Moon'
+  },
+  {
+    id: 7,
+    evil: 'Infoxicación Masiva',
+    evilDescription: 'El bombardeo de estímulos digitales vacíos genera fatiga cognitiva y parálisis mental.',
+    remedy: 'Ayuno Digital',
+    remedyLabel: 'Higiene de Datos',
+    remedyDescription: 'Cura tu entorno de información con rigor. Menos ruido, más sabiduría real. Elige el silencio.',
+    iconName: 'BrainCircuit'
+  },
+  {
+    id: 8,
+    evil: 'Soma Alienado',
+    evilDescription: 'Vivir solo en la cabeza genera una desconexión total con las señales vitales del organismo.',
+    remedy: 'Enraizamiento',
+    remedyLabel: 'Conciencia Vital',
+    remedyDescription: 'Habita tus sensaciones. Estira, respira, siente el peso de tus pies. Tu cuerpo es el mapa de tu realidad.',
+    iconName: 'Smile'
+  },
+  {
+    id: 9,
+    evil: 'Inercia de Deriva',
+    evilDescription: 'Vivir al día sin estructura es vivir en permanente inestabilidad y estrés existencial.',
+    remedy: 'Arquitectura de Hábito',
+    remedyLabel: 'Disciplina de Ancla',
+    remedyDescription: 'Construye rutinas sólidas que no dependan de tu estado de ánimo. La disciplina es el suelo sobre el que pisas.',
+    iconName: 'Compass'
+  },
+  {
+    id: 10,
+    evil: 'Vacío de Sentido',
+    evilDescription: 'La falta de propósito es la causa silenciosa de la apatía social y el desinterés por el mañana.',
+    remedy: 'Propósito en Acción',
+    remedyLabel: 'Servicio Comunitario',
+    remedyDescription: 'Crea algo. Ayuda a alguien. El sentido de la vida no se busca, se construye contribuyendo.',
+    iconName: 'Heart'
+  }
+];
+
+export const householdBudget = [
+  { id: 'pensiones', category: 'Cuidado de Mayores (Pensiones)', amount: 28.8, color: 'bg-amber-400', icon: 'Heart' },
+  { id: 'sanidad', category: 'Salud Familiar (Sanidad)', amount: 15.1, color: 'bg-emerald-400', icon: 'Activity' },
+  { id: 'educacion', category: 'Formación de los Hijos (Educación)', amount: 11.2, color: 'bg-blue-400', icon: 'BookOpen' },
+  { id: 'desempleo', category: 'Fondo de Emergencia (Paro)', amount: 3.5, color: 'bg-violet-400', icon: 'Umbrella' },
+  { id: 'ciencia', category: 'Inversión Futuro (I+D+i)', amount: 3.5, color: 'bg-cyan-400', icon: 'FlaskConical' },
+  { id: 'defensa', category: 'Seguridad (Defensa)', amount: 2.3, color: 'bg-slate-400', icon: 'Shield' },
+  { id: 'resto', category: 'Mantenimiento y Deudas (Infraestructuras, Adm., Intereses)', amount: 35.6, color: 'bg-stone-300', icon: 'Home' },
+];
+
+export const stateFinanceSummary = {
+  collected: 97.2, // Lo recaudado (impuestos, fondos UE)
+  spent: 100.0,    // Lo gastado (el desglose anterior)
+  balance: -2.8,   // Déficit (lo que se financia)
+  incomeSources: [
+    { id: 'irpf', name: 'IRPF (Lo que aportamos todos)', amount: 42.1 },
+    { id: 'iva', name: 'IVA (Consumo)', amount: 33.4 },
+    { id: 'eu', name: 'Fondos Europeos (Ayuda externa)', amount: 12.5 },
+    { id: 'otros', name: 'Otros ingresos', amount: 9.2 }
+  ]
+};
